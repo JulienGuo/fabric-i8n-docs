@@ -1,4 +1,4 @@
-Architecture Reference - 架构参考
+架构参考
 ======================
 
 .. toctree::
@@ -6,11 +6,11 @@ Architecture Reference - 架构参考
 
    arch-deep-dive
    txflow
-   Hyperledger Fabric CA's User Guide <http://hyperledger-fabric-ca.readthedocs.io/en/latest>
+   Hyperledger Fabric CA用户手册 <http://hyperledger-fabric-ca.readthedocs.io/en/latest>
    fabric-sdks
-   channels
-   capability_requirements
+   通道
+   capability_requirements
    couchdb_as_state_database
    peer_event_services
-   readwrite
-   gossip
+   读写
+   gossip
