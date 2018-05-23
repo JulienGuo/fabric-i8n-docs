@@ -1,12 +1,12 @@
-Architecture Reference
+架构参考
 ======================
 
 .. toctree::
    :maxdepth: 1
 
-   arch-deep-dive
-   txflow
-   Hyperledger Fabric CA's User Guide <http://hyperledger-fabric-ca.readthedocs.io/en/latest>
+   架构解读 <https://hyperledger-fabric.readthedocs.io/en/latest/arch-deep-dive.html>
+   交易流程 <https://hyperledger-fabric.readthedocs.io/en/latest/txflow.html>
+   Hyperledger Fabric CA 用户手册 <http://hyperledger-fabric-ca.readthedocs.io/en/latest>
    fabric-sdks
    channels
    capability_requirements
