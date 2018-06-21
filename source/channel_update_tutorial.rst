@@ -13,13 +13,11 @@
 策略或者改变批量大小）。 学习更多关于通道配置总体更新的过程和可能性，请参考 :doc:`config_update` 。
 像这里演示的通道配置更新通常是一个组织管理员（而不是链码或者程序开发者）的职责也是不足为奇了。
 
-.. note:: Make sure the automated ``byfn.sh`` script runs without error on
-          your machine before continuing. If you have exported your binaries and
-          the related tools (``cryptogen``, ``configtxgen``, etc) into your PATH
-          variable, you'll be able to modify the commands accordingly without
-          passing the fully qualified path.
+.. note:: 在继续之前，请确认自动化脚本 ``byfn.sh`` 在你的机器上运行没有错误。如果你已经在你的
+          系统PATH变量中包含了你的二进制文件和相关的工具（``cryptogen``, ``configtxgen`` 等），
+          你可以对一些命令做相应的修改，无需传入完整的路径。
 
-Setup the Environment
+设置环境
 ~~~~~~~~~~~~~~~~~~~~~
 
 We will be operating from the root of the ``first-network`` subdirectory within
