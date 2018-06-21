@@ -20,8 +20,7 @@
 设置环境
 ~~~~~~~~~~~~~~~~~~~~~
 
-We will be operating from the root of the ``first-network`` subdirectory within
-your local clone of ``fabric-samples``. Change into that directory now. You will
+我们将从你本地克隆的 ``fabric-samples`` 子目录 ``first-network`` 开始操作。现在进到该目录，你也 Change into that directory now. You will
 also want to open a few extra terminals for ease of use.
 
 First, use the ``byfn.sh`` script to tidy up. This command will kill any active
