@@ -3,7 +3,7 @@
 
 .. note:: 确认你已经下载了在 :doc:`samples` 和 :doc:`prereqs` 中列出来的和当前文档版本
           （位于左侧目录栏底部）匹配的相应镜像(images)和二进制文件。特别是，你的
-          ``fabric-samples``版本的文件夹中必须有 ``eyfn.sh`` 脚本和起相关的脚本。
+          ``fabric-samples`` 版本的文件夹中必须有 ``eyfn.sh`` 脚本和起相关的脚本。
 
 本教程是基于 :doc:`build_network` (BYFN) 教程，将演示如何增加一个新的组织-- ``Org3`` --
 到由BYFN自动生成的程序通道（``mychannel``）。假定你已经非常明白BYFN，包括前面提及到的工具
