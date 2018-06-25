@@ -5,7 +5,7 @@
           （位于左侧目录栏底部）匹配的相应镜像(images)和二进制文件。特别是，你的
           ``fabric-samples`` 版本的文件夹中必须有 ``eyfn.sh`` 脚本和起相关的脚本。
 
-本教程是基于 :doc:`build_network` (BYFN) 教程，将演示如何增加一个新的组织-- ``Org3`` --
+本教程是基于 :doc:`build_network` (BYFN) 教程，将演示如何增加一个新的组织 -- ``Org3`` -- 
 到由BYFN自动生成的程序通道（``mychannel``）。假定你已经非常明白BYFN，包括前面提及到的工具
 使用和功能。
 
@@ -20,27 +20,25 @@
 设置环境
 ~~~~~~~~~~~~~~~~~~~~~
 
-我们将从你本地克隆的 ``fabric-samples`` 子目录 ``first-network`` 开始操作。现在进到该目录，你也 Change into that directory now. You will
-also want to open a few extra terminals for ease of use.
+我们将从你本地克隆的 ``fabric-samples`` 子目录 ``first-network`` 开始操作。现在进到该目录，
+为了操作方便，建议你打开几个新的控制台。
 
-First, use the ``byfn.sh`` script to tidy up. This command will kill any active
-or stale docker containers and remove previously generated artifacts. It is by no
-means **necessary** to bring down a Fabric network in order to perform channel
-configuration update tasks. However, for the sake of this tutorial, we want to operate
-from a known initial state. Therefore let's run the following command to clean up any
-previous environments:
+首先，使用脚本 ``byfn.sh`` 做初始化准备。这个命令将杀掉所有的活跃和非活跃状态的docker容器，
+同事删除之前自动生成的artifacts目录中的内容。为了完成通道（Channel）配置更新任务，绝对
+**没必要** 停止Fabric网络。但是，为了本教程的目的，我们想从一个大家都熟悉的初始化状态开始操作。
+因此，请执行下面的命令，用来清理之前的环境变量：
 
 .. code:: bash
 
   ./byfn.sh -m down
 
-Now generate the default BYFN artifacts:
+现在产生默认的BYFN 一些必要的文件在artifacts目录：
 
 .. code:: bash
 
   ./byfn.sh -m generate
 
-And launch the network making use of the scripted execution within the CLI container:
+然后在CLI容器中利用下面的脚本来启动网络：
 
 .. code:: bash
 
