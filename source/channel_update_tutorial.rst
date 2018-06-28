@@ -59,7 +59,7 @@
 
   ./eyfn.sh up
 
-该脚本的输出内容应该仔细阅读以下。你将会看到正在添加Org3的加密资料，正在创建并签名配置更新，
+该脚本的输出内容应该仔细阅读一下。你将会看到正在添加Org3的加密资料，正在创建并签名配置更新，
 然后正在安装用来允许Org3执行账本查询的链码。
 
 如果一切进展顺利，你将会看到这样的消息：
@@ -68,31 +68,31 @@
 
   ========= All GOOD, EYFN test execution completed ===========
 
-``eyfn.sh`` can be used with the same Node.js chaincode and database options
-as ``byfn.sh`` by issuing the following (instead of ``./byfn.sh -m -up``):
+通过执行下面的命令（不是 ``./byfn.sh -m -up` ）， ``eyfn.sh`` 也可以选择执行相同的Node.js
+版本的链码，也可以传递数据库参数给 ``byfn.sh`` :
 
 .. code:: bash
 
   ./byfn.sh up -c testchannel -s couchdb -l node
 
-And then:
+然后执行:
 
 .. code:: bash
 
   ./eyfn.sh up -c testchannel -s couchdb -l node
 
-For those who want to take a closer look at this process, the rest of the doc will
-show you each command for making a channel update and what it does.
+对于那些需要进一步了解这个过程的读者来说，本文档接下来将向你展示用来完成一个通道更新的每一个
+命令以及该命令做了什么。
 
-Bring Org3 into the Channel Manually
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+手动把Org3加入到通道中
+~~~~~~~~~~~~~~~~~~~~~~~
 
-.. note:: The manual steps outlined below assume that the ``CORE_LOGGING_LEVEL``
-          in the ``cli`` and `Org3cli`` containers is set to ``DEBUG``.
+.. note:: 下面列出来的手动操作步骤前提条件是 ``cli`` 和 `Org3cli`` 容器的
+          ``CORE_LOGGING_LEVEL`` 被设置为 ``DEBUG``。
 
-          For the ``cli`` container, you can set this by modifying the
-          ``docker-compose-cli.yaml`` file in the ``first-network`` directory.
-          e.g.
+          对 ``cli`` 容器，你可以通过修改在 ``first-network`` 目录中的 
+          ``docker-compose-cli.yaml`` 文件来设置它。
+          例如：
 
           .. code::
 
@@ -107,9 +107,9 @@ Bring Org3 into the Channel Manually
                 #- CORE_LOGGING_LEVEL=INFO
                 - CORE_LOGGING_LEVEL=DEBUG
 
-          For the ``Org3cli`` container, you can set this by modifying the
-          ``docker-compose-org3.yaml`` file in the ``first-network`` directory.
-          e.g.
+          对 ``Org3cli`` 容器，你可以通过修改在 ``first-network`` 目录中的 
+          ``docker-compose-org3.yaml`` 文件来设置它。
+          例如：
 
           .. code::
 
@@ -124,23 +124,22 @@ Bring Org3 into the Channel Manually
                 #- CORE_LOGGING_LEVEL=INFO
                 - CORE_LOGGING_LEVEL=DEBUG
 
-If you've used the ``eyfn.sh`` script, you'll need to bring your network down.
-This can be done by issuing:
+如果你之前已经执行过 ``eyfn.sh`` 脚本，那么你需要先停掉Fabric网络。
+这个可以通过执行以下命令完成：
 
 .. code:: bash
 
   ./eyfn.sh down
 
-This will bring down the network, delete all the containers and undo what we've
-done to add Org3.
+这将停止Fabric网络，删除所有的容器(Fabric容器，译者注)，以及回撤增加Org3的所有操作。
 
-When the network is down, bring it back up again.
+当网络停止，再重启启动它。
 
 .. code:: bash
 
   ./byfn.sh -m generate
 
-Then:
+然后:
 
 .. code:: bash
 
