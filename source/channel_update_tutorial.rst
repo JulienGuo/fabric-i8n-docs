@@ -44,29 +44,25 @@
 
   ./byfn.sh -m up
 
-Now that you have a clean version of BYFN running on your machine, you have two
-different paths you can pursue. First, we offer a fully commented script that will
-carry out a config transaction update to bring Org3 into the network.
+现在在你的机器上运行一个干净的BYFN版本，你有两个不同的方式可以继续进行。首先，我们提供一个
+有详细注解的脚本文件用来执行一个配置事务更新，使得把Org3加入到网络中来。
 
-Also, we will show a "manual" version of the same process, showing each step
-and explaining what it accomplishes (since we show you how to bring down your
-network before this manual process, you could also run the script and then look at
-each step).
+其次，我们也会展示一个同样操作流程的“手动”版本，显示每一步操作并解释其做了什么（在这个手动
+操作之前我们会向你演示停止你的Fabric网络，你也可以运行该脚本然后观察你每一步）
 
-Bring Org3 into the Channel with the Script
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+用脚本把Org3加入到通道
+~~~~~~~~~~~~~~~~~~~~~~~
 
-You should be in ``first-network``. To use the script, simply issue the following:
+进入到目录 ``first-network`` 。要使用该脚本，只需要简单执行下面的命令:
 
 .. code:: bash
 
   ./eyfn.sh up
 
-The output here is well worth reading. You'll see the Org3 crypto material being
-added, the config update being created and signed, and then chaincode being installed
-to allow Org3 to execute ledger queries.
+该脚本的输出内容应该仔细阅读以下。你将会看到正在添加Org3的加密资料，正在创建并签名配置更新，
+然后正在安装用来允许Org3执行账本查询的链码。
 
-If everything goes well, you'll get this message:
+如果一切进展顺利，你将会看到这样的消息：
 
 .. code:: bash
 
