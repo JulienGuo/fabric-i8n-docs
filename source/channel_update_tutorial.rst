@@ -194,44 +194,38 @@
 ~~~~~~~~~~~~
 
 更新处理过程使用配置解析工具 -- ``configtxlator`` 。这工具提供一个不依赖SDK的无状态的REST API。
-另外还提供一个CLI，用来在Fabric网络中简化配置任务。The tool allows
-for the easy conversion between different equivalent data representations/formats
-(in this case, between protobufs and JSON). Additionally, the tool can compute a
-configuration update transaction based on the differences between two channel
-configurations.
+另外还提供一个CLI，用来在Fabric网络中简化配置任务。该工具可以方便在不同的等价数据表现/格式之间
+（在本例中是protobuf和JSON格式， Google Protocol Buffer简称protobuf，译者注）进行转换。另外，
+该工具可以基于两个通道配置之间的差异计算一个配置更新事务。
 
-First, exec into the CLI container. Recall that this container has been
-mounted with the BYFN ``crypto-config`` library, giving us access to the MSP material
-for the two original peer organizations and the Orderer Org. The bootstrapped
-identity is the Org1 admin user, meaning that any steps where we want to act as
-Org2 will require the export of MSP-specific environment variables.
+首先，通过exec命令进入CLI容器。回想一下该容器已经被BYFN ``crypto-config`` 库程序加载，其允许我们
+访问MSP两个原始节点组织和排序组织（Orderer Org）的资料。引导身份是Org1的管理员，意味着我们想作为
+Org2的任何一步操作都需要MSP明确的环境变量输出。
 
 .. code:: bash
 
   docker exec -it cli bash
 
-Now install the ``jq`` tool into the container. This tool allows script interactions
-with JSON files returned by the ``configtxlator`` tool:
+现在安装 ``jq`` 工具到容器中。该工具允许与由 ``configtxlator`` 工具返回的JSON文件进行脚本交互：
 
 .. code:: bash
 
   apt update && apt install -y jq
 
-Export the ``ORDERER_CA`` and ``CHANNEL_NAME`` variables:
+Export出 ``ORDERER_CA`` 和 ``CHANNEL_NAME`` 变量:
 
 .. code:: bash
 
   export ORDERER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem  && export CHANNEL_NAME=mychannel
 
-Check to make sure the variables have been properly set:
+检查确认变量已经被正确设置：
 
 .. code:: bash
 
   echo $ORDERER_CA && echo $CHANNEL_NAME
 
-.. note:: If for any reason you need to restart the CLI container, you will also need to
-          re-export the two environment variables -- ``ORDERER_CA`` and ``CHANNEL_NAME``.
-          The jq installation will persist. You need not install it a second time.
+.. note:: 如果因为任何原因你需要重启CLI容器，你也需要重新Export出两个环境变量 -- ``ORDERER_CA`` 
+          和 ``CHANNEL_NAME`` 。jq安装会保留，无需再次安装它。
 
 Fetch the Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~
