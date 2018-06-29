@@ -176,30 +176,25 @@
 
     export FABRIC_CFG_PATH=$PWD && ../../bin/configtxgen -printOrg Org3MSP > ../channel-artifacts/org3.json
 
-The above command creates a JSON file -- ``org3.json`` -- and outputs it into the
-``channel-artifacts`` subdirectory at the root of ``first-network``. This
-file contains the policy definitions for Org3, as well as three important certificates
-presented in base 64 format: the admin user certificate (which will be needed to act as
-the admin of Org3 later on), a CA root cert, and a TLS root cert. In an upcoming step we
-will append this JSON file to the channel configuration.
+上面命令会创建一个JSON文件 -- ``org3.json`` -- 同时把它写到 ``first-network`` 根路径下面的
+``channel-artifacts`` 子目录。 这个文件包括Org3的策略定义，以及三个重要的以base64格式呈现的证书：
+管理员用户证书（将来需要用来充当Org3的管理员）， 一个CA根证书，以及一个TLS根证书。在接下来一步，
+我们将给通道配置附上这个JSON文件。
 
-Our final piece of housekeeping is to port the Orderer Org's MSP material into
-the Org3 ``crypto-config`` directory. In particular, we are concerned with the
-Orderer's TLS root cert, which will allow for secure communication between
-Org3 entities and the network's ordering node.
+我们最终的内务处理块将携带排序组织（Orderer Org）的MSP资料到Org3的 ``crypto-config`` 目录中。
+特别是，我们关心的Orderer的TLS根证书，是用来在Org3实体和网络的排序节点之间保障安全通讯的。
 
 .. code:: bash
 
   cd ../ && cp -r crypto-config/ordererOrganizations org3-artifacts/crypto-config/
 
-Now we're ready to update the channel configuration...
+现在我们准备更新通道配置...
 
-Prepare the CLI Environment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+准备CLI环境
+~~~~~~~~~~~~
 
-The update process makes use of the configuration translator tool -- ``configtxlator``.
-This tool provides a stateless REST API independent of the SDK. Additionally it
-provides a CLI, to simplify configuration tasks in Fabric networks. The tool allows
+更新处理过程使用配置解析工具 -- ``configtxlator`` 。这工具提供一个不依赖SDK的无状态的REST API。
+另外还提供一个CLI，用来在Fabric网络中简化配置任务。The tool allows
 for the easy conversion between different equivalent data representations/formats
 (in this case, between protobufs and JSON). Additionally, the tool can compute a
 configuration update transaction based on the differences between two channel
