@@ -145,38 +145,32 @@
 
   ./byfn.sh -m up
 
-This will bring your network back to the same state it was in before you executed
-the ``eyfn.sh`` script.
+这样你的网络又恢复到执行 ``eyfn.sh`` 脚本之前的同样状态了。
 
-Now we're ready to add Org3 manually. As a first step, we'll need to generate Org3's
-crypto material.
+现在你可以开始手动添加Org3了。第一步，你得先生成Org3的加密资料。
 
-Generate the Org3 Crypto Material
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+生成Org3加密资料
+~~~~~~~~~~~~~~~~~~
 
-In another terminal, change into the ``org3-artifacts`` subdirectory from
-``first-network``.
+开启另外一个终端，从 ``first-network`` 进入到 ``org3-artifacts`` 子目录中。
 
 .. code:: bash
 
   cd org3-artifacts
 
-There are two ``yaml`` files of interest here: ``org3-crypto.yaml`` and ``configtx.yaml``.
-First, generate the crypto material for Org3:
+那里有两个我们需要关注的 ``yaml`` 文件： ``org3-crypto.yaml`` 和 ``configtx.yaml`` 。
+首先，为Org3生成加密资料：
 
 .. code:: bash
 
   ../../bin/cryptogen generate --config=./org3-crypto.yaml
 
-This command reads in our new crypto ``yaml`` file -- ``org3-crypto.yaml`` -- and
-leverages ``cryptogen`` to generate the keys and certificates for an Org3
-CA as well as two peers bound to this new Org. As with the BYFN implementation,
-this crypto material is put into a newly generated ``crypto-config`` folder
-within the present working directory (in our case, ``org3-artifacts``).
+该命令读取我们新的加密 ``yaml`` 文件 -- ``org3-crypto.yaml`` -- ，然后利用 ``cryptogen`` 
+为Org3 CA生成密钥和证书，而且生成两个节点（peer）归属于这个新的Org（组织）。根据BYFN实现，
+这些加密资料放在当前所在目录的一个新建的 ``crypto-config`` 文件夹中（在本例子中是 ``org3-artifacts`` ）。
 
-Now use the ``configtxgen`` utility to print out the Org3-specific configuration
-material in JSON. We will preface the command by telling the tool to look in the
-current directory for the ``configtx.yaml`` file that it needs to ingest.
+现在使用 ``configtxgen`` 工具打印出Org3专用的JSON格式配置材料。 在开始该命令之前，我们得告诉它
+需要从当前目录来读取 ``configtx.yaml`` 文件（该工具需要用的的配置信息文件，译者注）。
 
 .. code:: bash
 
