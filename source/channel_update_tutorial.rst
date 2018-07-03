@@ -227,49 +227,39 @@ Export出 ``ORDERER_CA`` 和 ``CHANNEL_NAME`` 变量:
 .. note:: 如果因为任何原因你需要重启CLI容器，你也需要重新Export出两个环境变量 -- ``ORDERER_CA`` 
           和 ``CHANNEL_NAME`` 。jq安装会保留，无需再次安装它。
 
-Fetch the Configuration
-~~~~~~~~~~~~~~~~~~~~~~~
+读取配置
+~~~~~~~~~
 
-Now we have a CLI container with our two key environment variables -- ``ORDERER_CA``
-and ``CHANNEL_NAME`` exported.  Let's go fetch the most recent config block for the
-channel -- ``mychannel``.
+现在我们已经在CLI容器中定义好了两个变量 -- ``ORDERER_CA`` 和 ``CHANNEL_NAME`` 。咱们开始读取
+最新的通道（ ``mychannel`` ）配置区块。
 
-The reason why we have to pull the latest version of the config is because channel
-config elements are versioned.. Versioning is important for several reasons. It prevents
-config changes from being repeated or replayed (for instance, reverting to a channel config
-with old CRLs would represent a security risk). Also it helps ensure concurrency (if you
-want to remove an Org from your channel, for example, after a new Org has been added,
-versioning will help prevent you from removing both Orgs, instead of just the Org you want
-to remove).
+之所以我们拿最新版本的配置，是因为通道配置元素是版本区分的。版本化在几个方面表现很重要。首先，版本化防
+止配置更新重复或者重现（例如：回退一个使用旧的CRL的通道配置意味着安全风险）。 其次，版本化帮助确保并发（例
+如：在添加了一个新的组织Org之后，如果你想从你的通道中删除一个组织Org，版本化将帮助你防止一起删除这两个
+组织Org，而是只删除你想要删除的那个组织Org）。
 
 .. code:: bash
 
   peer channel fetch config config_block.pb -o orderer.example.com:7050 -c $CHANNEL_NAME --tls --cafile $ORDERER_CA
 
-This command saves the binary protobuf channel configuration block to
-``config_block.pb``. Note that the choice of name and file extension is arbitrary.
-However, following a convention which identifies both the type of object being
-represented and its encoding (protobuf or JSON) is recommended.
+该命令保存二进制protobuf通道配置区块到 ``config_block.pb`` 文件。注意，你可以随意输入文件名和扩张名。
+但是，建议遵循一个约定：其方便识别文件数据类型和编码格式（protobuf或者JSON）。
 
-When you issued the ``peer channel fetch`` command, there was a decent amount of
-output in the terminal. The last line in the logs is of interest:
+当你运行 ``peer channel fetch`` 命令，在终端会有大量输出，日志中最后一行需要关注的是：
 
 .. code:: bash
 
   2017-11-07 17:17:57.383 UTC [channelCmd] readBlock -> DEBU 011 Received block: 2
 
-This is telling us that the most recent configuration block for ``mychannel`` is
-actually block 2, **NOT** the genesis block. By default, the ``peer channel fetch config``
-command returns the most **recent** configuration block for the targeted channel, which
-in this case is the third block. This is because the BYFN script defined anchor
-peers for our two organizations -- ``Org1`` and ``Org2`` -- in two separate channel update
-transactions.
+这行日志告诉我们最新的 ``mychannel`` 配置区块实际上是区块2，**不是** 初始区块。默认情况下，
+``peer channel fetch config`` 命令返回指定通道的最 **新** 配置区块，在本例中是第三个区块。
+这是因为BYFN脚本为 ``Org1`` 和 ``Org2`` 两个组织（在两个单独的通道更新交易）定义了锚节点。
 
-As a result, we have the following configuration sequence:
+结果，我们有下列配置序列：
 
-  * block 0: genesis block
-  * block 1: Org1 anchor peer update
-  * block 2: Org2 anchor peer update
+  * 区块 0: 初始区块
+  * 区块 1: Org1锚节点更新
+  * 区块 2: Org2锚节点更新
 
 Convert the Configuration to JSON and Trim It Down
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
