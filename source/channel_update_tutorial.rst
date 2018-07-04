@@ -261,22 +261,19 @@ Export出 ``ORDERER_CA`` 和 ``CHANNEL_NAME`` 变量:
   * 区块 1: Org1锚节点更新
   * 区块 2: Org2锚节点更新
 
-Convert the Configuration to JSON and Trim It Down
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+转换配置内容到JSON格式，然后裁剪
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Now we will make use of the ``configtxlator`` tool to decode this channel
-configuration block into JSON format (which can be read and modified by humans).
-We also must strip away all of the headers, metadata, creator signatures, and
-so on that are irrelevant to the change we want to make. We accomplish this by
-means of the ``jq`` tool:
+现在我们使用 ``configtxlator`` 工具来解码通道配置区块成JSON格式（我们可以读和修改的格式）
+我们也必须去掉所有的header、metadata、创建者签名等和我们需要做的修改不相关的内容。我们通
+过 ``jq`` 工具来完成该操作：
 
 .. code:: bash
 
   configtxlator proto_decode --input config_block.pb --type common.Block | jq .data.data[0].payload.data.config > config.json
 
-This leaves us with a trimmed down JSON object -- ``config.json``, located in
-the ``fabric-samples`` folder inside ``first-network`` -- which
-will serve as the baseline for our config update.
+这会给我们生成一个裁剪后的JSON对象 -- ``config.json`` ，被放在 ``first-network`` 目录
+下 ``fabric-samples`` 的文件夹中（其将用作我们配置更新的基准）。
 
 Take a moment to open this file inside your text editor of choice (or in your
 browser). Even after you're done with this tutorial, it will be worth studying it
