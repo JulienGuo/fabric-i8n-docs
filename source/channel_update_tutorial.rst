@@ -275,46 +275,41 @@ Export出 ``ORDERER_CA`` 和 ``CHANNEL_NAME`` 变量:
 这会给我们生成一个裁剪后的JSON对象 -- ``config.json`` ，被放在 ``first-network`` 目录
 下 ``fabric-samples`` 的文件夹中（其将用作我们配置更新的基准）。
 
-Take a moment to open this file inside your text editor of choice (or in your
-browser). Even after you're done with this tutorial, it will be worth studying it
-as it reveals the underlying configuration structure and the other kind of channel
-updates that can be made. We discuss them in more detail in :doc:`config_update`.
+花一点时间在文件编辑器中打开这个文件（也可以在浏览器中打开）。即使你已经学习完该教材，也还
+是值得去研究一下它，因为它解析了基础配置架构以及可以实施的其通道更新操作。我们会在
+:doc:`config_update` 中详细地讨论这些。
 
-Add the Org3 Crypto Material
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+添加Org3的加密资料
+~~~~~~~~~~~~~~~~~~
 
-.. note:: The steps you've taken up to this point will be nearly identical no matter
-          what kind of config update you're trying to make. We've chosen to add an
-          org with this tutorial because it's one of the most complex channel
-          configuration updates you can attempt.
+.. note:: 不管你做哪种配置更新，你执行的步骤到目前为止基本上都是相同的。 在本教程，我们之
+          所以选择增加一个组织，因为这是你可以尝试操作的最复杂的通道配置更新。
 
-We'll use the ``jq`` tool once more to append the Org3 configuration definition
--- ``org3.json`` -- to the channel's application groups field, and name the output
--- ``modified_config.json``.
+我们将再次使用 ``jq`` 工具来添加Org3的配置定义 -- ``org3.json`` -- 到通道的程序组域，然
+后输出到文件 -- ``modified_config.json`` 。
 
 .. code:: bash
 
   jq -s '.[0] * {"channel_group":{"groups":{"Application":{"groups": {"Org3MSP":.[1]}}}}}' config.json ./channel-artifacts/org3.json > modified_config.json
 
-Now, within the CLI container we have two JSON files of interest -- ``config.json``
-and ``modified_config.json``. The initial file contains only Org1 and Org2 material,
-whereas "modified" file contains all three Orgs. At this point it's simply
-a matter of re-encoding these two JSON files and calculating the delta.
+现在，在CLI容器中我们有两个需要关注的文件 -- ``config.json`` 和 ``modified_config.json`` 。
+初始文件内容只包括Org1和Org2资料，但是“修改后”的文件包括三个组织Org。在这一步，这是对两个JSON
+文件做一个简单的重新编码，计算方差。
 
-First, translate ``config.json`` back into a protobuf called ``config.pb``:
+首先，翻译 ``config.json`` 成一个protobuf文件，文件名为 ``config.pb``:
 
 .. code:: bash
 
   configtxlator proto_encode --input config.json --type common.Config --output config.pb
 
-Next, encode ``modified_config.json`` to ``modified_config.pb``:
+接下来，编码 ``modified_config.json`` 成 ``modified_config.pb``:
 
 .. code:: bash
 
   configtxlator proto_encode --input modified_config.json --type common.Config --output modified_config.pb
 
-Now use ``configtxlator`` to calculate the delta between these two config
-protobufs. This command will output a new protobuf binary named ``org3_update.pb``:
+现在使用 ``configtxlator`` 来计算这两个配置protobuf文件直接的方差delta。该命令将输入一个新的
+protobuf二进制文件叫 ``org3_update.pb``:
 
 .. code:: bash
 
