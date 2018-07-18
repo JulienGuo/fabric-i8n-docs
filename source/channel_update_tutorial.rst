@@ -315,22 +315,19 @@ protobuf二进制文件叫 ``org3_update.pb``:
 
   configtxlator compute_update --channel_id $CHANNEL_NAME --original config.pb --updated modified_config.pb --output org3_update.pb
 
-This new proto -- ``org3_update.pb`` -- contains the Org3 definitions and high
-level pointers to the Org1 and Org2 material. We are able to forgo the extensive
-MSP material and modification policy information for Org1 and Org2 because this
-data is already present within the channel's genesis block. As such, we only need
-the delta between the two configurations.
+这个新的proto文件 -- ``org3_update.pb`` -- 包含Org3定义和高标准关联指向Org1和Org2资料。
+我们可以先不去想大量MSP资料和对Org1和Org2的修改策略信息，因为这个数据已经在通道的初始区块中展示
+了。同样，我们只需要这两个配置之间的方差。
 
-Before submitting the channel update, we need to perform a few final steps. First,
-let's decode this object into editable JSON format and call it ``org3_update.json``:
+在提交通道更新之前，我们需要完成最后几步。首先，让我们解码一下这个对象成可编辑的JSON格式并取名
+为 ``org3_update.json``:
 
 .. code:: bash
 
   configtxlator proto_decode --input org3_update.pb --type common.ConfigUpdate | jq . > org3_update.json
 
-Now, we have a decoded update file -- ``org3_update.json`` -- that we need to wrap
-in an envelope message. This step will give us back the header field that we stripped away
-earlier. We'll name this file ``org3_update_in_envelope.json``:
+现在，我们有一个解码后的更新文件 -- ``org3_update.json`` -- 我们需要把它装入一个信封消息。
+这一步将给回我们在之前去掉的header信息。我们取名这个文件叫 ``org3_update_in_envelope.json``:
 
 .. code:: bash
 
