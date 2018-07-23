@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Hyperledger Fabric 示例 &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Key Concepts" href="key_concepts.html" />
+    <link rel="prev" title="预备知识" href="prereqs.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+<br>
+<a href="https://chat.hyperledger.org">Rocket Chat</a>  <a href="https://jenkins.hyperledger.org/">CI</a>
+<a href="http://stackoverflow.com/questions/tagged/hyperledger-fabric">StackOverflow</a>
+<br>
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+  <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+  <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">欢迎来到 Hyperledger Fabric</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="getting_started.html">入门指南</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="prereqs.html">预备知识</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Hyperledger Fabric 示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#binaries">下载特定平台的二进制文件</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#id2">安装前提</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#docker">安装二进制文件和Docker镜像</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#hyperledger-fabric">Hyperledger Fabric 示例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#api">API 文档</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#hyperledger-fabric-sdks">Hyperledger Fabric SDKs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#hyperledger-fabric-ca">Hyperledger Fabric CA</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="key_concepts.html">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.html">Tutorials - 教程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ops_guide.html">Operations Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="command_ref.html">Commands Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fabric-FAQ.html">Hyperledger Fabric FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ordering-service-faq.html">Ordering Service FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CONTRIBUTING.html">Contributions Welcome!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html">Glossary - 词汇表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases.html">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="questions.html">Still Have Questions? - 依然遇到问题？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="status.html">Status - 状态</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="getting_started.html">入门指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="prereqs.html">预备知识</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Hyperledger Fabric 示例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#binaries">下载特定平台的二进制文件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#id2">安装前提</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#docker">安装二进制文件和Docker镜像</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#hyperledger-fabric">Hyperledger Fabric 示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#api">API 文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#hyperledger-fabric-sdks">Hyperledger Fabric SDKs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#hyperledger-fabric-ca">Hyperledger Fabric CA</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials - 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ops_guide.html">Operations Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">Commands Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">Hyperledger Fabric FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ordering-service-faq.html">Ordering Service FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Contributions Welcome!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary - 词汇表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">Still Have Questions? - 依然遇到问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">Status - 状态</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="getting_started.html">入门指南</a> &raquo;</li>
+        
+      <li>Hyperledger Fabric 示例</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/samples.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hyperledger-fabric">
+<h1>Hyperledger Fabric 示例<a class="headerlink" href="#hyperledger-fabric" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>如果您运行在 <strong>Windows</strong> 操作系统上，接下来的终端命令行，可以使用 Docker Quickstart Terminal，
+如果您之前没有安装，请访问 <a class="reference internal" href="prereqs.html"><span class="doc">预备知识</span></a> 页面。</p>
+<p>如果您在 Windows 7 或者 macOS 操作系统上使用 Docker Toolbox，
+需要在 <code class="docutils literal notranslate"><span class="pre">C:\Users</span></code> (Windows 7) 或者 <code class="docutils literal notranslate"><span class="pre">/Users</span></code> (macOS) 目录下安装和运行示例。</p>
+<dl class="docutils">
+<dt>如果您使用 Mac 版 Docker，示例需要位于 <code class="docutils literal notranslate"><span class="pre">/Users</span></code>, <code class="docutils literal notranslate"><span class="pre">/Volumes</span></code>, <code class="docutils literal notranslate"><span class="pre">/private</span></code>, 或者 <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> 目录下。</dt>
+<dd>如果需要使用不同的位置，请查询Docker文档中的 <a class="reference external" href="https://docs.docker.com/docker-for-mac/#file-sharing">文件共享</a>。</dd>
+</dl>
+<p class="last">如果您使用 Windows 版 Docker，请查询Docker文档中的 <a class="reference external" href="https://docs.docker.com/docker-for-windows/#shared-drives">共享驱动</a>，
+并使用使用其中一个共享驱动的位置。</p>
+</div>
+<p>在您的机器上选择一个存放 Hyperledger Fabric 示例应用程序仓库的位置，并在终端窗口中打开。然后，执行以下命令：</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">-</span><span class="n">b</span> <span class="n">master</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">hyperledger</span><span class="o">/</span><span class="n">fabric</span><span class="o">-</span><span class="n">samples</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">fabric</span><span class="o">-</span><span class="n">samples</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="p">{</span><span class="n">TAG</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">为了确保示例和您接下来将要下载的 Fabric 二进制文件版本兼容，请检查与您 Fabric 版本匹配的示例 <code class="docutils literal notranslate"><span class="pre">{TAG}</span></code>，比如, v1.1.0。
+使用命令 “git tag” 可以查看所有 Fabric 示例标签的列表。</p>
+</div>
+<div class="section" id="binaries">
+<span id="id1"></span><h2>下载特定平台的二进制文件<a class="headerlink" href="#binaries" title="Permalink to this headline">¶</a></h2>
+<p>接下来，我们将要安装 Hyperledger Fabric 特定平台的二进制文件。这个过程主要用于补充上述 Hyperledger Fabric 示例，但也可以被独立使用。
+如果您不安装以上的示例，可以直接创建和输入目录，用于提取存放特定平台的二进制文件内容。</p>
+<p>在您即将用于提取存放特定平台的二进制文件的目录下，请执行以下命令：</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">sSL</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">goo</span><span class="o">.</span><span class="n">gl</span><span class="o">/</span><span class="mi">6</span><span class="n">wtTN5</span> <span class="o">|</span> <span class="n">bash</span> <span class="o">-</span><span class="n">s</span> <span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>如果您在运行上述 curl 命令时遇到错误，您的 curl 版本可能太旧，不能处理重定向或者不能支持该环境。</p>
+<p class="last">请访问 <a class="reference internal" href="prereqs.html"><span class="doc">预备知识</span></a> 页面获取关于最新 curl 版本和正确环境的更多信息。或者，您可以用以下长地址了解其他信息:
+<a class="reference external" href="https://github.com/hyperledger/fabric/blob/master/scripts/bootstrap.sh">https://github.com/hyperledger/fabric/blob/master/scripts/bootstrap.sh</a></p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">对于任何一个已发布版本的 Hyperledger Fabric，您都可以使用以上命令，只需把 ‘1.1.0’ 替换成您需要安装版本的标识符。</p>
+</div>
+<p>通过上述命令，下载和执行一个bash脚本，该脚本可以下载和提取，所有您需要用于设置网络的特定平台的二进制文件，并把他们放入您之前创建的克隆仓库中，
+其中，包括四个特定平台的二进制文件：</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">cryptogen</span></code>,</li>
+<li><code class="docutils literal notranslate"><span class="pre">configtxgen</span></code>,</li>
+<li><code class="docutils literal notranslate"><span class="pre">configtxlator</span></code>,</li>
+<li><code class="docutils literal notranslate"><span class="pre">peer</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">orderer</span></code> 和</li>
+<li><code class="docutils literal notranslate"><span class="pre">fabric-ca-client</span></code></li>
+</ul>
+</div></blockquote>
+<p>他们会被放入您当前工作目录的 <code class="docutils literal notranslate"><span class="pre">bin</span></code> 子目录下。</p>
+<p>您也许想要把这个目录加入到 PATH 环境变量中，这样可以在不完全符合每个二进制文件路径的情况下就找到他们，比如：</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span>export PATH=&lt;path to download location&gt;/bin:$PATH
+</pre></div>
+</div>
+<p>最后，这个脚本将会从 <a class="reference external" href="https://hub.docker.com/u/hyperledger/">Docker Hub</a> 下载 Hyperledger Fabric docker 镜像，
+加入您的本地 Docker 注册表，并标记他们为 ‘latest’。</p>
+<p>结束之后，这个脚本会罗列出所有已经安装的 Docker 镜像。</p>
+<p>看看每一个镜像的名字，这些都将是组成我们的 Hyperledger Fabric 网络的组件。同时，您会发现您有两个同一镜像ID的实例 -
+一个标记为 “x86_64-1.x.x”，另一个标记为 “latest”.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">在不同的架构上，x86_64 会被用于标识您所用架构的字符串替换。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">如果您有其他该文档未谈及的疑问，或者在任何一个教程中遇到问题，请您访问 <a class="reference internal" href="questions.html"><span class="doc">Still Have Questions? - 依然遇到问题？</span></a> 页面了解关于额外帮助的温馨提示。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="key_concepts.html" class="btn btn-neutral float-right" title="Key Concepts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prereqs.html" class="btn btn-neutral" title="预备知识" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'master',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
