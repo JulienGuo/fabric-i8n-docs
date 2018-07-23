@@ -1,0 +1,428 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>预备知识 &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Hyperledger Fabric 示例" href="samples.html" />
+    <link rel="prev" title="入门指南" href="getting_started.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+<br>
+<a href="https://chat.hyperledger.org">Rocket Chat</a>  <a href="https://jenkins.hyperledger.org/">CI</a>
+<a href="http://stackoverflow.com/questions/tagged/hyperledger-fabric">StackOverflow</a>
+<br>
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+  <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+  <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">欢迎来到 Hyperledger Fabric</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="getting_started.html">入门指南</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">预备知识</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#curl">安装 cURL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#docker-docker-compose">Docker 和 Docker Compose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#go">Go 编程语言</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#node-js-npm">Node.js 运行环境和 NPM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#windows">Windows 附加条件</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="samples.html">Hyperledger Fabric 示例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#id2">安装前提</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#docker">安装二进制文件和Docker镜像</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#hyperledger-fabric">Hyperledger Fabric 示例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#api">API 文档</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#hyperledger-fabric-sdks">Hyperledger Fabric SDKs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#hyperledger-fabric-ca">Hyperledger Fabric CA</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="key_concepts.html">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.html">Tutorials - 教程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ops_guide.html">Operations Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="command_ref.html">Commands Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fabric-FAQ.html">Hyperledger Fabric FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ordering-service-faq.html">Ordering Service FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CONTRIBUTING.html">Contributions Welcome!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html">Glossary - 词汇表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases.html">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="questions.html">Still Have Questions? - 依然遇到问题？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="status.html">Status - 状态</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="getting_started.html">入门指南</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">预备知识</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#curl">安装 cURL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker-docker-compose">Docker 和 Docker Compose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#go">Go 编程语言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#node-js-npm">Node.js 运行环境和 NPM</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#python">Python</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#windows">Windows 附加条件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="samples.html">Hyperledger Fabric 示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#id2">安装前提</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#docker">安装二进制文件和Docker镜像</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#hyperledger-fabric">Hyperledger Fabric 示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#api">API 文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#hyperledger-fabric-sdks">Hyperledger Fabric SDKs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#hyperledger-fabric-ca">Hyperledger Fabric CA</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials - 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ops_guide.html">Operations Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">Commands Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">Hyperledger Fabric FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ordering-service-faq.html">Ordering Service FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Contributions Welcome!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary - 词汇表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">Still Have Questions? - 依然遇到问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">Status - 状态</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="getting_started.html">入门指南</a> &raquo;</li>
+        
+      <li>预备知识</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/prereqs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>预备知识<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="curl">
+<h2>安装 cURL<a class="headerlink" href="#curl" title="Permalink to this headline">¶</a></h2>
+<p>如果您还没有安装cURL工具，或者当您从文件中运行curl命令遇到错误提示时，请下载最新版本的`cURL
+&lt;<a class="reference external" href="https://curl.haxx.se/download.html">https://curl.haxx.se/download.html</a>&gt;`__ 工具。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">如果您使用的是Windows操作系统，请参照下文中关于 <a class="reference internal" href="#windows">Windows 附加条件</a> 的特定注解.</p>
+</div>
+</div>
+<div class="section" id="docker-docker-compose">
+<h2>Docker 和 Docker Compose<a class="headerlink" href="#docker-docker-compose" title="Permalink to this headline">¶</a></h2>
+<p>请在您用于运行、开发、或其他方式使用Hyperledger Fabric的平台上安装以下内容：</p>
+<blockquote>
+<div><ul class="simple">
+<li>MacOSX, *nix, 或者 Windows 10： <a class="reference external" href="https://www.docker.com/products/overview">Docker</a>
+Docker 17.06.2-ce 或者更高版本。</li>
+<li>旧版 Windows： <a class="reference external" href="https://docs.docker.com/toolbox/toolbox_install_windows/">Docker
+Toolbox</a> -
+同样的, Docker 版本需要 Docker 17.06.2-ce 或者更高版本。</li>
+</ul>
+</div></blockquote>
+<p>您可以在终端提示符中通过以下命令，检查您所安装的Docker版本：</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">在为Mac或者Windows安装Docker或者Docker Toolbox时，也会安装Docker Compose。
+如果您已经安装了Docker，请务必检查是否同时安装了Docker Compose 1.14.0 或者更高版本。
+如果没有，我们建议您安装更新版本的Docker。</p>
+</div>
+<p>您可以在终端提示符中通过以下命令，检查您所安装的Docker Compose版本：</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="go">
+<span id="golang"></span><h2>Go 编程语言<a class="headerlink" href="#go" title="Permalink to this headline">¶</a></h2>
+<p>Hyperledger Fabric 在很多组件中使用Go 1.9.x 版本的编程语言。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>不支持使用Go 1.8.x 版本。</p>
+<ul class="last simple">
+<li><a class="reference external" href="https://golang.org/">Go</a> - 1.9.x 版本</li>
+</ul>
+</div>
+<p>既然我们写的是Go链码（Chaincode）程序，我们需要确保源代码位于``$GOPATH``树目录中的某处。首先，您需要检查是否已经设置``$GOPATH``环境变量。</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span>echo $GOPATH
+/Users/xxx/go
+</pre></div>
+</div>
+<p>当您echo <code class="docutils literal notranslate"><span class="pre">$GOPATH``时，如果什么都没有显示，您需要设置这个环境变量。</span>
+<span class="pre">通常来说，如果您的开发工作空间（development</span> <span class="pre">workspace）中有一个子树目录（directory</span> <span class="pre">tree</span> <span class="pre">child），</span>
+<span class="pre">这个变量值就是这个目录，或者也可以是您$HOME目录下的子目录。由于我们将要用Go语言进行一系列编码，</span>
+<span class="pre">您也许需要将如下内容添加至配置文件``~/.bashrc</span></code>：</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span>export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+</pre></div>
+</div>
+</div>
+<div class="section" id="node-js-npm">
+<h2>Node.js 运行环境和 NPM<a class="headerlink" href="#node-js-npm" title="Permalink to this headline">¶</a></h2>
+<p>如果您打算使用Hyperledger Fabric的Node.js SDK为Hyperledger Fabric开发应用程序，您需要安装Node.js 8.9.x版本。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>暂时不支持Node.js 9.x 版本。</p>
+<ul class="last simple">
+<li><a class="reference external" href="https://nodejs.org/en/download/">Node.js</a> - 8.9.x 或更高版本</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">安装 Node.js 时同时需要安装 NPM, 但是，建议您先确认已经安装的NPM版本。您可以通过以下命令，升级 <code class="docutils literal notranslate"><span class="pre">npm</span></code> 工具：</p>
+</div>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">install</span> <span class="n">npm</span><span class="nd">@5</span><span class="o">.</span><span class="mf">6.0</span> <span class="o">-</span><span class="n">g</span>
+</pre></div>
+</div>
+<div class="section" id="python">
+<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">以下内容仅面向 Ubuntu 16.04 的用户。</p>
+</div>
+<p>默认情况下，Ubuntu 16.04 已经安装 Python 3.5.1 作为其 <code class="docutils literal notranslate"><span class="pre">python3</span></code> 的二进制版本。
+但是，Fabric Node.js SDK 需要迭代 Python 2.7 版本，用于成功运行 <a href="#id2"><span class="problematic" id="id3">``</span></a>npm install``命令，
+建议通过以下命令，获取2.7版本：</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python</span>
+</pre></div>
+</div>
+<p>请检查您的版本号：</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="windows">
+<h2>Windows 附加条件<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h2>
+<p>如果在Windows 7操作系统上做开发，您可以在 Docker Quickstart Terminal 中工作，它使用 <a class="reference external" href="https://git-scm.com/downloads">Git Bash</a> ，提供了一个除了内置Windows shell的更好替代。</p>
+<p>然而，经验显示，这个开发环境功能比较局限，它适用于运行基于Docker的场景，比如:doc:<cite>getting_started</cite>，
+但是当运行包含``make`` 和 <a href="#id4"><span class="problematic" id="id5">``</span></a>docker``的命令时，您可能会遇到困难。</p>
+<p>在Windows 10 操作系统上，您应该使用原生的Docker分发版本，您也可能需要使用 Windows PowerShell。
+但是，为了让 <a class="reference internal" href="samples.html#binaries"><span class="std std-ref">下载特定平台的二进制文件</span></a> 命令成功运行，您还是需要有可用的 <code class="docutils literal notranslate"><span class="pre">uname</span></code> 命令。
+您可以通过其作为Git的一部分而得到它，但是需要注意的是，它只支持64-bit的版本。</p>
+<p>在运行任何``git clone``命令之前，请运行以下命令：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">core</span><span class="o">.</span><span class="n">autocrlf</span> <span class="n">false</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">core</span><span class="o">.</span><span class="n">longpaths</span> <span class="n">true</span>
+</pre></div>
+</div>
+<p>您可以通过以下命令，检查这些变量的设置：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">get</span> <span class="n">core</span><span class="o">.</span><span class="n">autocrlf</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">get</span> <span class="n">core</span><span class="o">.</span><span class="n">longpaths</span>
+</pre></div>
+</div>
+<p>这些设置需要分别为 <code class="docutils literal notranslate"><span class="pre">false</span></code> 和 <code class="docutils literal notranslate"><span class="pre">true</span></code>。</p>
+<p>依附Git和Docker Toolbox的``curl`` 命令是旧版的，不能够正常处理 <a class="reference internal" href="getting_started.html"><span class="doc">入门指南</span></a> 中使用的重定向。
+请确保您安装和使用`cURL 下载页面 &lt;<a class="reference external" href="https://curl.haxx.se/download.html">https://curl.haxx.se/download.html</a>&gt;`__中的较新版本。</p>
+<p>对于 Node.js，您也需要必要的 Visual Studio C++ Build Tools，这是免费的工具，可以通过以下命令安装：</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">install</span> <span class="o">--</span><span class="k">global</span> <span class="n">windows</span><span class="o">-</span><span class="n">build</span><span class="o">-</span><span class="n">tools</span>
+</pre></div>
+</div>
+<p>请参照 <a class="reference external" href="https://www.npmjs.com/package/windows-build-tools">NPM windows-build-tools 页面</a> 获取更多细节。</p>
+<p>当完成以上任务之后，您还需要通过以下命令，安装 NPM GRPC 模块：</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">install</span> <span class="o">--</span><span class="k">global</span> <span class="n">grpc</span>
+</pre></div>
+</div>
+<p>到此为止，您的环境应该已经准备好运行 <a class="reference internal" href="getting_started.html"><span class="doc">入门指南</span></a> 中的示例和教程。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">如果您有其他该文档未谈及的疑问，或者在任何一个教程中遇到问题，请您访问 <a class="reference internal" href="questions.html"><span class="doc">Still Have Questions? - 依然遇到问题？</span></a> 页面了解关于额外帮助的温馨提示。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="samples.html" class="btn btn-neutral float-right" title="Hyperledger Fabric 示例" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="getting_started.html" class="btn btn-neutral" title="入门指南" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'master',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

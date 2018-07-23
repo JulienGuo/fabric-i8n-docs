@@ -1,0 +1,380 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Hyperledger Fabric Functionalities-Hyperledger Fabric的功能 &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="超级账本 Fabric 模型" href="fabric_model.html" />
+    <link rel="prev" title="Introduction" href="blockchain.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+<br>
+<a href="https://chat.hyperledger.org">Rocket Chat</a>  <a href="https://jenkins.hyperledger.org/">CI</a>
+<a href="http://stackoverflow.com/questions/tagged/hyperledger-fabric">StackOverflow</a>
+<br>
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+  <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+  <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">欢迎来到 Hyperledger Fabric</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html">入门指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="key_concepts.html">Key Concepts</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="blockchain.html">Introduction</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Hyperledger Fabric Functionalities-Hyperledger Fabric的功能</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#identity-management">Identity management-身份管理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#privacy-and-confidentiality">Privacy and confidentiality-隐私和保密</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#efficient-processing">Efficient processing-高效的处理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chaincode-functionality-chaincode">Chaincode functionality-Chaincode的功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modular-design">Modular design-模块化设计</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="fabric_model.html">超级账本 Fabric 模型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="identity/identity.html">Identity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="membership/membership.html">Membership</a></li>
+<li class="toctree-l3"><a class="reference internal" href="peers/peers.html">Peers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="peers/peers.html#peer">peer节点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ledger.html">Ledger - 账本</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usecases.html">Use Cases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usecases.html#id1">用例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.html">Tutorials - 教程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ops_guide.html">Operations Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="command_ref.html">Commands Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fabric-FAQ.html">Hyperledger Fabric FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ordering-service-faq.html">Ordering Service FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CONTRIBUTING.html">Contributions Welcome!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html">Glossary - 词汇表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases.html">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="questions.html">Still Have Questions? - 依然遇到问题？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="status.html">Status - 状态</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门指南</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="key_concepts.html">Key Concepts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="blockchain.html">Introduction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Hyperledger Fabric Functionalities-Hyperledger Fabric的功能</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#identity-management">Identity management-身份管理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#privacy-and-confidentiality">Privacy and confidentiality-隐私和保密</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#efficient-processing">Efficient processing-高效的处理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chaincode-functionality-chaincode">Chaincode functionality-Chaincode的功能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modular-design">Modular design-模块化设计</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fabric_model.html">超级账本 Fabric 模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identity/identity.html">Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="membership/membership.html">Membership</a></li>
+<li class="toctree-l2"><a class="reference internal" href="peers/peers.html">Peers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="peers/peers.html#peer">peer节点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ledger.html">Ledger - 账本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usecases.html">Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usecases.html#id1">用例</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials - 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ops_guide.html">Operations Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">Commands Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">Hyperledger Fabric FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ordering-service-faq.html">Ordering Service FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Contributions Welcome!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary - 词汇表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">Still Have Questions? - 依然遇到问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">Status - 状态</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="key_concepts.html">Key Concepts</a> &raquo;</li>
+        
+      <li>Hyperledger Fabric Functionalities-Hyperledger Fabric的功能</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/functionalities.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hyperledger-fabric-functionalities-hyperledger-fabric">
+<h1>Hyperledger Fabric Functionalities-Hyperledger Fabric的功能<a class="headerlink" href="#hyperledger-fabric-functionalities-hyperledger-fabric" title="Permalink to this headline">¶</a></h1>
+<p>Hyperledger Fabric is an implementation of distributed ledger technology
+(DLT) that delivers enterprise-ready network security, scalability,
+confidentiality and performance, in a modular blockchain architecture.
+Hyperledger Fabric delivers the following blockchain network functionalities:</p>
+<p>Hyperledger Fabric是分布式账本技术（DLT）的一种实现，它在模块化区块链架构中提供企业级网络安全性，可扩展性，保密性和性能。
+Hyperledger Fabric提供以下区块链网络功能：</p>
+<div class="section" id="identity-management">
+<h2>Identity management-身份管理<a class="headerlink" href="#identity-management" title="Permalink to this headline">¶</a></h2>
+<p>To enable permissioned networks, Hyperledger Fabric provides a membership
+identity service that manages user IDs and authenticates all participants on
+the network. Access control lists can be used to provide additional layers of
+permission through authorization of specific network operations. For example, a
+specific user ID could be permitted to invoke a chaincode application, but
+blocked from deploying new chaincode.</p>
+<p>为了启用许可的网络，Hyperledger Fabric提供了一种成员身份识别服务，用于管理用户ID并对网络上的所有参与者进行身份验证。
+访问控制列表可用于通过授权特定的网络操作来提供额外的权限层。
+例如，特定的用户ID可以被允许调用链码应用程序，但被阻止配置新的链码。</p>
+</div>
+<div class="section" id="privacy-and-confidentiality">
+<h2>Privacy and confidentiality-隐私和保密<a class="headerlink" href="#privacy-and-confidentiality" title="Permalink to this headline">¶</a></h2>
+<p>Hyperledger Fabric enables competing business interests, and any groups that
+require private, confidential transactions, to coexist on the same permissioned
+network. Private <strong>channels</strong> are restricted messaging paths that can be used
+to provide transaction privacy and confidentiality for specific subsets of
+network members. All data, including transaction, member and channel
+information, on a channel are invisible and inaccessible to any network members
+not explicitly granted access to that channel.</p>
+<p>Hyperledger Fabric使相互竞争的商业利益以及任何需要私密交易的群体能够在同一个许可的网络上共存。
+私有“通道”是受限的消息传递路径，可用于为特定的网络成员子集提供交易隐私和机密性。
+任何未明确授予访问该通道权限的网络成员，都不可见也无法访问该通道所有的数据，包括交易，成员及通道信息。</p>
+</div>
+<div class="section" id="efficient-processing">
+<h2>Efficient processing-高效的处理<a class="headerlink" href="#efficient-processing" title="Permalink to this headline">¶</a></h2>
+<p>Hyperledger Fabric assigns network roles by node type. To provide concurrency
+and parallelism to the network, transaction execution is separated from
+transaction ordering and commitment. Executing transactions prior to
+ordering them enables each peer node to process multiple transactions
+simultaneously. This concurrent execution increases processing efficiency on
+each peer and accelerates delivery of transactions to the ordering service.</p>
+<p>Hyperledger Fabric按节点类型分配网络角色。
+为了向网络提供并发性和并行性，交易执行与交易排序和提交是分开的。
+在给它们排序之前执行交易可使每个对等节点同时处理多个交易。
+这种并发执行提高了每个节点的处理效率并加速了向排序服务提供交易。</p>
+<p>In addition to enabling parallel processing, the division of labor unburdens
+ordering nodes from the demands of transaction execution and ledger
+maintenance, while peer nodes are freed from ordering (consensus) workloads.
+This bifurcation of roles also limits the processing required for authorization
+and authentication; all peer nodes do not have to trust all ordering nodes, and
+vice versa, so processes on one can run independently of verification by the
+other.</p>
+<p>除了支持并行处理之外，分工还可以从交易执行和账本维护的需求中解除排序节点的负担，同时节点从排序（共识）工作负载中解放出来。
+角色分工也限制了授权和认证所需的处理;
+所有对等节点不必信任所有的排序节点，反之亦然，因此一个节点上的进程可以独立于另一节点的验证运行。</p>
+</div>
+<div class="section" id="chaincode-functionality-chaincode">
+<h2>Chaincode functionality-Chaincode的功能<a class="headerlink" href="#chaincode-functionality-chaincode" title="Permalink to this headline">¶</a></h2>
+<p>Chaincode applications encode logic that is
+invoked by specific types of transactions on the channel. Chaincode that
+defines parameters for a change of asset ownership, for example, ensures that
+all transactions that transfer ownership are subject to the same rules and
+requirements. <strong>System chaincode</strong> is distinguished as chaincode that defines
+operating parameters for the entire channel. Lifecycle and configuration system
+chaincode defines the rules for the channel; endorsement and validation system
+chaincode defines the requirements for endorsing and validating transactions.</p>
+<p>Chaincode应用程序对由通道上特定类型的交易调用的逻辑进行编码。
+例如，为资产所有权变更定义参数的链码可确保所有变更所有权的交易都遵守相同的规则和要求。
+“system chaincode”区别于Chaincode，它定义了整个通道的工作参数。
+Lifecycle和配置system chaincode定义了通道的规则；背书和验证system chaincode定义了批准和验证交易的要求。</p>
+</div>
+<div class="section" id="modular-design">
+<h2>Modular design-模块化设计<a class="headerlink" href="#modular-design" title="Permalink to this headline">¶</a></h2>
+<p>Hyperledger Fabric implements a modular architecture to
+provide functional choice to network designers. Specific algorithms for
+identity, ordering (consensus) and encryption, for example, can be plugged in
+to any Hyperledger Fabric network. The result is a universal blockchain
+architecture that any industry or public domain can adopt, with the assurance
+that its networks will be interoperable across market, regulatory and
+geographic boundaries.</p>
+<p>Hyperledger Fabric实现了模块化架构，为网络设计者提供了功能选择。
+例如，用于身份识别，排序（共识）和加密的特定算法可以插入任何Hyperledger Fabric网络。
+其结果是任何行业或公共领域都可以采用的通用区块链架构，并确保其网络能在市场，法规和地理边界中共同使用。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fabric_model.html" class="btn btn-neutral float-right" title="超级账本 Fabric 模型" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="blockchain.html" class="btn btn-neutral" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2017.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'master',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
