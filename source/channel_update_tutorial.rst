@@ -333,39 +333,31 @@ protobuf二进制文件叫 ``org3_update.pb``:
 
   echo '{"payload":{"header":{"channel_header":{"channel_id":"mychannel", "type":2}},"data":{"config_update":'$(cat org3_update.json)'}}}' | jq . > org3_update_in_envelope.json
 
-Using our properly formed JSON -- ``org3_update_in_envelope.json`` -- we will
-leverage the ``configtxlator`` tool one last time and convert it into the
-fully fledged protobuf format that Fabric requires. We'll name our final update
-object ``org3_update_in_envelope.pb``:
+使用我们正确的JSON文件 -- ``org3_update_in_envelope.json`` -- 我们将最后一次利用工具 ``configtxlator`` 来转换成Fabric要求的完全系列化格式的文件。我们将命名我们最后的更新对象为 ``org3_update_in_envelope.pb`` :
 
 .. code:: bash
 
   configtxlator proto_encode --input org3_update_in_envelope.json --type common.Envelope --output org3_update_in_envelope.pb
 
-Sign and Submit the Config Update
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+签名和提交配置更新
+~~~~~~~~~~~~~~~~~
 
-Almost done!
+到这差不多已经完成了！
 
-We now have a protobuf binary -- ``org3_update_in_envelope.pb`` -- within
-our CLI container. However, we need signatures from the requisite Admin users
-before the config can be written to the ledger. The modification policy (mod_policy)
-for our channel Application group is set to the default of "MAJORITY", which means that
-we need a majority of existing org admins to sign it. Because we have only two orgs --
-Org1 and Org2 -- and the majority of two is two, we need both of them to sign. Without
-both signatures, the ordering service will reject the transaction for failing to
-fulfill the policy.
+我们现在在我们的CLI容器中有一个系列化二进制文件 -- ``org3_update_in_envelope.pb`` -- 。 
+但是，在配置可以写到账本中之前，我们需要所有相关Admin用户的签名。我们的通道程序组修改策略 (mod_policy)
+被设置成默认值"MAJORITY"，意味着我们需要多数现存组织管理员去对它签名。因为我们只有两个组织 --
+Org1 and Org2 -- ，两个的多数就是两个，所以我们需要这两个组织的管理员都签名。没有这两个签名，排序服务将
+会因为不满足策略二拒绝交易。
 
-First, let's sign this update proto as the Org1 Admin. Remember that the CLI container
-is bootstrapped with the Org1 MSP material, so we simply need to issue the
-``peer channel signconfigtx`` command:
+首先，咱们让Org1管理员签名这个更新原型。记住，CLI容器启动时带有Org1 MSP资料，因此我们只需要简单执行
+``peer channel signconfigtx`` 命令:
 
 .. code:: bash
 
   peer channel signconfigtx -f org3_update_in_envelope.pb
 
-The final step is to switch the CLI container's identity to reflect the Org2 Admin
-user. We do this by exporting four environment variables specific to the Org2 MSP.
+最后一步是切换CLI容器的身份来反射Org2 Admin用户。 我们通过在Org2 MSP中设置四个环境变量来完成该操作。
 
 .. note:: Switching between organizations to sign a config transaction (or to do anything
           else) is not reflective of a real-world Fabric operation. A single container
