@@ -359,13 +359,11 @@ Org1 and Org2 -- ，两个的多数就是两个，所以我们需要这两个组
 
 最后一步是切换CLI容器的身份来反射Org2 Admin用户。 我们通过在Org2 MSP中设置四个环境变量来完成该操作。
 
-.. note:: Switching between organizations to sign a config transaction (or to do anything
-          else) is not reflective of a real-world Fabric operation. A single container
-          would never be mounted with an entire network's crypto material. Rather, the
-          config update would need to be securely passed out-of-band to an Org2
-          Admin for inspection and approval.
+.. note:: 在组织之间轮流签名一个配置事务（或者做其他事情）不能算一个Fabric真实操作。一个当容器从来不会
+         存放一个整个网络的加密材料。相反，配置更新将需要安全地带外传递给一个Org2的Admin，以便检查和批
+         准同意。
 
-Export the Org2 environment variables:
+设置Org2环境变量:
 
 .. code:: bash
 
@@ -379,29 +377,26 @@ Export the Org2 environment variables:
 
   export CORE_PEER_ADDRESS=peer0.org2.example.com:7051
 
-Lastly, we will issue the ``peer channel update`` command. The Org2 Admin signature
-will be attached to this call so there is no need to manually sign the protobuf a
-second time:
+最后，你需要执行命令 ``peer channel update`` 。Org2管理员签名将在这次调用时一起被附带上，以至于不需要
+人工再次签名这个系列化数据:
 
-.. note:: The upcoming update call to the ordering service will undergo a series
-          of systematic signature and policy checks. As such you may find it
-          useful to stream and inspect the ordering node's logs. From another shell,
-          issue a ``docker logs -f orderer.example.com`` command to display them.
+.. note:: 接下来的排序服务的更新调用将经历一系列的系统签名和策略检查。因此，你可能会发现输出并检查排序节
+          点的日志将会很有用的。在另外一个Shell终端，执行一个命令 ``docker logs -f orderer.example.com`` 
+          可以用来显示他们。
 
-Send the update call:
+发送更新调用：
 
 .. code:: bash
 
   peer channel update -f org3_update_in_envelope.pb -c $CHANNEL_NAME -o orderer.example.com:7050 --tls --cafile $ORDERER_CA
 
-You should see a message digest indication similar to the following if your
-update has been submitted successfully:
+如果你的更新被成功提交，你应该可以看到一个类似下面的消息摘要信息：
 
 .. code:: bash
 
   2018-02-24 18:56:33.499 UTC [msp/identity] Sign -> DEBU 00f Sign: digest: 3207B24E40DE2FAB87A2E42BC004FEAA1E6FDCA42977CB78C64F05A88E556ABA
 
-You will also see the submission of our configuration transaction:
+你也将看到我们配置交易的提交信息：
 
 .. code:: bash
 
