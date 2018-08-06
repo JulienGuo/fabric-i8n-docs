@@ -23,7 +23,7 @@ how they propose **queries** and **updates** on a more granular level, as well
 as point out the differences between a small scale test network like Fabcar and
 how apps will usually end up working in the real world.
 
-但是对于那些想要了解深层原理的人来说，让我们一起更深入了解应用程序是怎么 **连接**网络并发送 **queries** 和 **updates**的，同时找到运行Fabcar这样的小应用与实际商用的app之间的区别。
+但是对于那些想要了解深层原理的人来说，让我们一起更深入了解应用程序是怎么 **连接** 网络并发送 **queries** 和 **updates** 的，同时找到运行Fabcar这样的小应用与实际商用的app之间的区别。
 
 We'll also point you to where you can get detailed information about how Fabric
 networks are created and how a transaction flow works beyond the scope of the
@@ -47,7 +47,7 @@ Fabcar使用了"basic-network"的样本来搭建它的网络环境。包含了�
 For detailed information on these components and what they do, refer to
 :doc:`build_network`.
 
-想要了解更多关于组件及组件作用的细节，请参照:doc:`build_network`。
+想要了解更多关于组件及组件作用的细节，请参照 :doc:`build_network`。
 
 These components are bootstrapped by the ``./startFabric.sh`` script, which
 also:
@@ -65,8 +65,8 @@ The script uses the CLI to execute these commands, however there is support in
 the SDK as well. Refer to the `Hyperledger Fabric Node SDK repo
 <https://github.com/hyperledger/fabric-sdk-node>`__ for example scripts.
 
-这些操作分别被一个组织或peer admin完成。这个脚本使用CLI来执行命令，并且在SDK中也可以执行。请参照 `Hyperledger Fabric Node SDK repo
-<https://github.com/hyperledger/fabric-sdk-node>`__查看脚本示例。
+这些操作分别被一个组织或peer admin完成。这个脚本使用CLI来执行命令，并且在SDK中也可以执行。请参照 
+`Hyperledger Fabric Node SDK repo <https://github.com/hyperledger/fabric-sdk-node>`__ 查看脚本示例。
 
 How an Application Interacts with the Network
 ---------------------------------------------
@@ -80,7 +80,7 @@ chaincode container is titled - ``dev-peer0.org1.example.com-fabcar-1.0`` -
 where the name is ``fabcar``, the version is ``1.0``, and the peer it is running
 against is ``dev-peer0.org1.example.com``.
 
-应用使用 **APIs**来调用智能合约。这些智能合约在网络中以名称和版本进行区分，我们的chaincode容器叫做 - ``dev-peer0.org1.example.com-fabcar-1.0`` - 他的名字是 ``fabcar``, 版本好是 ``1.0``，peer运行在``dev-peer0.org1.example.com`` 中。
+应用使用 **APIs** 来调用智能合约。这些智能合约在网络中以名称和版本进行区分，我们的chaincode容器叫做 - ``dev-peer0.org1.example.com-fabcar-1.0`` - 他的名字是 ``fabcar``, 版本号是 ``1.0``，peer运行在``dev-peer0.org1.example.com`` 中。
 
 APIs are accessible with an SDK. For purposes of this exercise, we're using the
 `Hyperledger Fabric Node SDK <https://fabric-sdk-node.github.io/>`__ though
@@ -89,7 +89,7 @@ SDKs encapsulate all access to the ledger by allowing an application to
 communicate with smart contracts, run queries, or receive ledger updates. These APIs use
 several different network addresses and are run with a set of input parameters.
 
-APIs是可以被SDK访问的。为了练习，我们使用`Hyperledger Fabric Node SDK <https://fabric-sdk-node.github.io/>`__ 同时还有Java版本的SDK和CLI可以使用。SDK封装了接入账本调用智能合约的方法，包括查询或接受账本的变化。这些APIs使用了不同网络地址并与需要一系列的参数输入。
+APIs是可以被SDK访问的。为了练习，我们使用 `Hyperledger Fabric Node SDK <https://fabric-sdk-node.github.io/>`__ 同时还有Java版本的SDK和CLI可以使用。SDK封装了接入账本调用智能合约的方法，包括查询或接受账本的变化。这些APIs使用了不同网络地址并与需要一系列的参数输入。
 
 Smart contracts are installed by a peer administrator and then instantiated on a
 channel by an identity fulfilling the chaincode's instantiation policy, which by
@@ -112,7 +112,7 @@ will interrogate the state database for the current value associated
 with a key (``GetState``).  However, the `chaincode shim interface <https://github.com/hyperledger/fabric/blob/release/core/chaincode/shim/interfaces.go>`__
 also allows for different types of ``Get`` calls (e.g. ``GetHistoryForKey`` or ``GetCreator``).
 
-查询是最简单的调用：一次请求和一个回复。最常见的查询将询问状态数据库中与键相关的当前值（``GetState``）。并且，`chaincode shim interface <https://github.com/hyperledger/fabric/blob/release/core/chaincode/shim/interfaces.go>`__同样支持不同类型的``Get`` 调用(如 ``GetHistoryForKey`` or ``GetCreator``)。
+查询是最简单的调用：一次请求和一个回复。最常见的查询将询问状态数据库中与键相关的当前值（``GetState``）。并且，`chaincode shim interface <https://github.com/hyperledger/fabric/blob/release/core/chaincode/shim/interfaces.go>`__ 同样支持不同类型的 ``Get`` 调用(如 ``GetHistoryForKey`` or ``GetCreator``)。
 
 
 In our example, the peer holds a hash chain of all transactions and maintains
@@ -149,7 +149,7 @@ to the ordering service by calling the ``channel.sendTransaction`` API. The
 ordering service bundles the transaction into a block and delivers it to all
 peers on a channel for validation (the Fabcar network has only one peer and one channel).
 
-网络（背书节点）返回proposal的response，response用来建立和签名请求。这个请求通过调用``channel.sendTransaction`` API发送给排序服务。排序服务将transaction分装进入block并传递给在同一个channel中的peer进行认证（Fabcar中只有一个peer和一个channel）。
+网络（背书节点）返回proposal的response，response用来建立和签名请求。这个请求通过调用 ``channel.sendTransaction`` API发送给排序服务。排序服务将transaction分装进入block并传递给在同一个channel中的peer进行认证（Fabcar中只有一个peer和一个channel）。
 
 Finally the application uses two event handler APIs: ``eh.setPeerAddr`` to
 connect to the peer's event listener port and ``eh.registerTxEvent`` to

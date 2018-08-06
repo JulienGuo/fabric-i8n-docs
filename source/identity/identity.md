@@ -130,7 +130,8 @@ card -- it provides information about John which he can use to prove key facts a
 There are many other attributes in an X.509 certificate, but let's concentrate
 on just these for now.
 
-数字证书，是包含了一方多种属性的文档。最常见的证书类型是符合[X.509 标准](https://en.wikipedia.org/wiki/X.509)的。
+数字证书，是包含了一方多种属性的文档。最常见的证书类型是符合[X.509 标准](https://en.wikipedia.org/wiki/X.509)的, 它是由编码后的用户信息组成的特殊结构。例如， 来自密歇根州底特律市FOO公司财务部门的John Doe，他的证书 `主体` 的属性为 `C=US, ST=Michigan, L=Detroit, O=FOO Corporation, OU=Accounting,
+CN=John Doe /UID=123456`. John的证书和他的身份证相同 -- 都提供了关于John的关键信息。在X.509证书中还包含了一些其他信息，我们现在来看看都有些什么。 
 
 ![DigitalCertificate](./identity.diagram.8.png)
 
@@ -253,7 +254,7 @@ organization's actors to have a verifiable digital identity.
 
 ### Root CAs, Intermediate CAs and Chains of Trust
 
-### 根CA，中级CA和链式信任
+### 根CA，中间CA和链式信任
 
 CAs come in two flavors: **Root CAs** and **Intermediate CAs**. Because Root CAs
 (Symantec, Geotrust, etc) have to **securely distribute** hundreds of millions
@@ -285,8 +286,6 @@ may use different Root CAs, or the same Root CA with different Intermediate CAs 
 it really does depend on the needs of the network.
 
 中间CA提供了极大的灵活性，当需要为多个组织颁发证书时，它同样对需要权限的区块链系统提供很大的帮助。比如，你可以看到不同的组织可能使用不能的根CA，或者使用同一个根CA和不同的中间CA——这取决于所在网络的具体需求。
-
-### Fabric CA
 
 ### Fabric CA
 
@@ -333,7 +332,7 @@ accepting a compromised identity.
 pass a compromised digital certificate to a validating party, it can be first
 checked against the issuing CA's CRL to make sure it's not listed as no longer valid.*
 
-*使用CRL去检查一个证书是否有效。如果一个冒充者试图使用一个过期的数字证书骗过一个验证方，可以先去检查颁发证书的CA的CRL以确保证书是否有效。
+*使用CRL去检查一个证书是否有效。如果一个冒充者试图使用一个过期的数字证书骗过一个验证方，可以先去检查颁发证书的CA的CRL以确保证书是否有效。*
 
 Note that a certificate being revoked is very different from a certificate expiring.
 Revoked certificates have not expired -- they are, by every other measure, a fully
