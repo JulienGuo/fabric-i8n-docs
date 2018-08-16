@@ -402,31 +402,26 @@ Org1 and Org2 -- ，两个的多数就是两个，所以我们需要这两个组
 
   2018-02-24 18:56:33.499 UTC [channelCmd] update -> INFO 010 Successfully submitted channel update
 
-The successful channel update call returns a new block -- block 5 -- to all of the
-peers on the channel. If you remember, blocks 0-2 are the initial channel
-configurations while blocks 3 and 4 are the instantiation and invocation of
-the ``mycc`` chaincode. As such, block 5 serves as the most recent channel
-configuration with Org3 now defined on the channel.
+该成功的通道更新调用返回一个新的区块 -- 区块 5 -- 到通道上所有的节点。如果你记得，
+区块0-2是初始化通道配置区块，而区块3和区块4分别是实例化以及调用 ``mycc`` 链码。同理，区块5是由最近的有关Org3
+的通道配置更新生成的，该配置更新使得Org3现在已经定义在通道上了。
 
-Inspect the logs for ``peer0.org1.example.com``:
+查看有关 ``peer0.org1.example.com`` 日志信息 :
 
 .. code:: bash
 
       docker logs -f peer0.org1.example.com
 
-Follow the demonstrated process to fetch and decode the new config block if you wish to inspect
-its contents.
+如果你想查看其内容，按照演示流程获取并解码新的配置区块。
 
-Configuring Leader Election
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+配置首选
+~~~~~~~~~~~~~
 
-.. note:: This section is included as a general reference for understanding
-          the leader election settings when adding organizations to a network
-          after the initial channel configuration has completed. This sample
-          defaults to dynamic leader election, which is set for all peers in the
-          network in `peer-base.yaml`.
+.. note:: 在初始通道配置完成后将组织添加到网络时，该章节被引入作为一个一般参考，用来
+          理解首选设置。在本例中的 `peer-base.yaml` 中的所有网络节点被默认设置为动
+          态首选。
 
-Newly joining peers are bootstrapped with the genesis block, which does not
+新加入的节点都是以原始块启动时Newly joining peers are bootstrapped with the genesis block, which does not
 contain information about the organization that is being added in the channel
 configuration update. Therefore new peers are not able to utilize gossip as
 they cannot verify blocks forwarded by other peers from their own organization
