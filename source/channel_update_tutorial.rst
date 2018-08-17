@@ -506,7 +506,7 @@ gossip通讯，因为他们不能验证其他节点从他们自己组织转发�
 
   peer channel join -b mychannel.block
 
-如果你想为Org3加入第二个节点，export出 ``TLS`` 和 ``ADDRESS`` 变量，在执行命令： ``peer channel join command``:
+如果你想为Org3加入第二个节点，export出 ``TLS`` 和 ``ADDRESS`` 变量，再执行命令： ``peer channel join command``:
 
 .. code:: bash
 
