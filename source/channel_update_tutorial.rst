@@ -414,23 +414,19 @@ Org1 and Org2 -- ，两个的多数就是两个，所以我们需要这两个组
 
 如果你想查看其内容，按照演示流程获取并解码新的配置区块。
 
-配置首选
+配置领导者选举
 ~~~~~~~~~~~~~
 
 .. note:: 在初始通道配置完成后将组织添加到网络时，该章节被引入作为一个一般参考，用来
-          理解首选设置。在本例中的 `peer-base.yaml` 中的所有网络节点被默认设置为动
-          态首选。
+          理解领导者选举设置。在本例中的 `peer-base.yaml` 中的所有网络节点被默认设置为动
+          态领导者选举。
 
-新加入的节点都是以原始块启动时Newly joining peers are bootstrapped with the genesis block, which does not
-contain information about the organization that is being added in the channel
-configuration update. Therefore new peers are not able to utilize gossip as
-they cannot verify blocks forwarded by other peers from their own organization
-until they get the configuration transaction which added the organization to the
-channel. Newly added peers must therefore have one of the following
-configurations so that they receive blocks from the ordering service:
+新加入的节点都是以原始区块启动，其不含正要被加入到通道配置更新的组织信息。因此新节点不能利用
+gossip通讯，因为他们不能验证其他节点从他们自己组织转发过来的区块，直到他们拿到把其组织加入到
+通道的配置事务。新增加的节点因此必须有下面配置中的其中一个，这样他们才可以接受从培训服务发来
+的区块：
 
-1. To utilize static leader mode, configure the peer to be an organization
-leader:
+1. 使用静态领导者模式，配置该节点为一个组织的领导：
 
 ::
 
@@ -438,11 +434,9 @@ leader:
     CORE_PEER_GOSSIP_ORGLEADER=true
 
 
-.. note:: This configuration must be the same for all new peers added to the
-channel.
+.. note:: 这个配置必须对加入到该通道中的所有新节点都一样。
 
-2. To utilize dynamic leader election, configure the peer to use leader
-election:
+2. 使用动态领导者选举，配置该节点成使用领导者选举：
 
 ::
 
@@ -450,81 +444,69 @@ election:
     CORE_PEER_GOSSIP_ORGLEADER=false
 
 
-.. note:: Because peers of the newly added organization won't be able to form
-          membership view, this option will be similar to the static
-          configuration, as each peer will start proclaiming itself to be a
-          leader. However, once they get updated with the configuration
-          transaction that adds the organization to the channel, there will be
-          only one active leader for the organization. Therefore, it is
-          recommended to leverage this option if you eventually want the
-          organization's peers to utilize leader election.
+.. note:: 因为新增加的组织中的节点不能产生成员视图，该选项类似于静态配置，因为每个
+          节点将宣布自己为领导者。然后，一旦他们获得增加该组织到通道的配置事务的更
+          新，他们将成为该组织的唯一合法领导者。因此，如果你最终想该组织的所有节点
+          使用领导选举，推荐使用该选项。
 
 
-Join Org3 to the Channel
-~~~~~~~~~~~~~~~~~~~~~~~~
+把Org3加入到通道
+~~~~~~~~~~~~~~~~~
 
-At this point, the channel configuration has been updated to include our new
-organization -- ``Org3`` -- meaning that peers attached to it can now join ``mychannel``.
+这时候，通道配置已经被更新至包含我们新的组织 -- ``Org3`` -- ，意味着所有与之相关的节
+点都能加入 ``mychannel`` 。
 
-First, let's launch the containers for the Org3 peers and an Org3-specific CLI.
+首先，咱们启动Org3的节点容器和一个Org3相对应的CLI容器。
 
-Open a new terminal and from ``first-network`` kick off the Org3 docker compose:
+打开一个新的终端，进入到 ``first-network`` 目录，并启动Org3的 docker compose:
 
 .. code:: bash
 
   docker-compose -f docker-compose-org3.yaml up -d
 
-This new compose file has been configured to bridge across our initial network,
-so the two peers and the CLI container will be able to resolve with the existing
-peers and ordering node. With the three new containers now running, exec into
-the Org3-specific CLI container:
+这个新的compose文件已经被配置为我们初始网络的桥接。因此这两个节点和CLI容器将能够与现存
+的节点和排序节点一起解决问题。现在三个容器同时在运行，exec进入Org3相对应的CLI容器：
 
 .. code:: bash
 
   docker exec -it Org3cli bash
 
-Just as we did with the initial CLI container, export the two key environment
-variables: ``ORDERER_CA`` and ``CHANNEL_NAME``:
+只按照我们在初始CLI容器中所做的一样，export这两个关键环境变量： ``ORDERER_CA`` 和
+``CHANNEL_NAME``:
 
 .. code:: bash
 
   export ORDERER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem && export CHANNEL_NAME=mychannel
 
-Check to make sure the variables have been properly set:
+检查确保这些变量已经被正确设置：
 
 .. code:: bash
 
   echo $ORDERER_CA && echo $CHANNEL_NAME
 
-Now let's send a call to the ordering service asking for the genesis block of
-``mychannel``. The ordering service is able to verify the Org3 signature
-attached to this call as a result of our successful channel update. If Org3
-has not been successfully appended to the channel config, the ordering
-service should reject this request.
+现在让我们发送一个调用到排序服务查看 ``mychannel`` 的原始区块。因为我们成功更新
+了通道，所以排序服务能够验证这次调用附带的Org3签名。如果Org3没有成功加入到通道配
+置中，排序服务将拒绝这次请求。
 
-.. note:: Again, you may find it useful to stream the ordering node's logs
-          to reveal the sign/verify logic and policy checks.
+.. note:: 再次说明，你可能发现打印出排序节点的日志很有用，可以显示签名/验证逻辑，
+          以及策略检查。
 
-Use the ``peer channel fetch`` command to retrieve this block:
+使用命令 ``peer channel fetch`` 来检索该区块：
 
 .. code:: bash
 
   peer channel fetch 0 mychannel.block -o orderer.example.com:7050 -c $CHANNEL_NAME --tls --cafile $ORDERER_CA
 
-Notice, that we are passing a ``0`` to indicate that we want the first block on
-the channel's ledger (i.e. the genesis block). If we simply passed the
-``peer channel fetch config`` command, then we would have received block 5 -- the
-updated config with Org3 defined. However, we can't begin our ledger with a
-downstream block -- we must start with block 0.
+注意，我们正传递一个 ``0`` 用来表示我们想获取该通道的账本的第一个区块（也称之为原始区块）。如果我们只是传递命令
+``peer channel fetch config`` ，那么我们将接受到区块5 -- Org3定义的更新后配置。然而我们不能从下游区块开始我们账本，我们必须从区块0开始。
 
-Issue the ``peer channel join`` command and pass in the genesis block -- ``mychannel.block``:
+执行命令 ``peer channel join`` 并传递原始区块 -- ``mychannel.block``:
 
 .. code:: bash
 
   peer channel join -b mychannel.block
 
-If you want to join the second peer for Org3, export the ``TLS`` and ``ADDRESS`` variables
-and reissue the ``peer channel join command``:
+如果你想为Org3加入第二个节点，export出 ``TLS`` 和 ``ADDRESS`` 变量，在执行命令： ``peer channel join command``:
 
 .. code:: bash
 
