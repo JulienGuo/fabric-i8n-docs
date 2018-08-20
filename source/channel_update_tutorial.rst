@@ -567,54 +567,44 @@ gossip通讯，因为他们不能验证其他节点从他们自己组织转发�
 
   peer chaincode upgrade -o orderer.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n mycc -v 2.0 -c '{"Args":["init","a","90","b","210"]}' -P "OR ('Org1MSP.peer','Org2MSP.peer','Org3MSP.peer')"
 
-You can see in the above command that we are specifying our new version by means
-of the ``v`` flag. You can also see that the endorsement policy has been modified to
-``-P "OR ('Org1MSP.peer','Org2MSP.peer','Org3MSP.peer')"``, reflecting the
-addition of Org3 to the policy. The final area of interest is our constructor
-request (specified with the ``c`` flag).
+你可以看到在上面的命令中，我们通过 ``v`` 标志的值，指定了我们的新版本号。你也可以看到背书策略
+已经被修改成 ``-P "OR ('Org1MSP.peer','Org2MSP.peer','Org3MSP.peer')"`` ，表明Org3被
+加入到策略中来了。最后需要关注的是我们的构造函数请求（以 ``c`` 标志指定）。
 
-As with an instantiate call, a chaincode upgrade requires usage of the ``init``
-method. **If** your chaincode requires arguments be passed to the ``init`` method,
-then you will need to do so here.
+由于是初始化调用，链码更新需要调用 ``init`` 方法。 **如果** 你的链码要求传递参数给 ``init`` 
+方法，那么你在这里也需要传入。
 
-The upgrade call adds a new block -- block 6 -- to the channel's ledger and allows
-for the Org3 peers to execute transactions during the endorsement phase. Hop
-back to the Org3 CLI container and issue a query for the value of ``a``. This will
-take a bit of time because a chaincode image needs to be built for the targeted peer,
-and the container needs to start:
+更新调用产生一个新区块 -- block 6 -- 到通道账本，而且允许Org3节点在背书期间执行交易。 跳回到
+Org3 CLI容器，然后执行查询 ``a`` 的值。这一步将需要等待一点时间，因为链码镜像需要在目标节点上
+建立，然后容器需要执行：
 
 .. code:: bash
 
     peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","a"]}'
 
-We should see a response of ``Query Result: 90``.
+你将看到一个返回结果 ``Query Result: 90``。
 
-Now issue an invocation to move ``10`` from ``a`` to ``b``:
+现在执行一个调用，从 ``a`` 中转移 ``10`` 到 ``b`` 中：
 
 .. code:: bash
 
     peer chaincode invoke -o orderer.example.com:7050  --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n mycc -c '{"Args":["invoke","a","b","10"]}'
 
-Query one final time:
+查询最后一次：
 
 .. code:: bash
 
     peer chaincode query -C $CHANNEL_NAME -n mycc -c '{"Args":["query","a"]}'
 
-We should see a response of ``Query Result: 80``, accurately reflecting the
-update of this chaincode's world state.
+你将看到一个返回结果 ``Query Result: 80`` ，准确地说明链码的世界状态已经更新了。
 
-Conclusion
-~~~~~~~~~~
+小结
+~~~~~
 
-The channel configuration update process is indeed quite involved, but there is a
-logical method to the various steps. The endgame is to form a delta transaction object
-represented in protobuf binary format and then acquire the requisite number of admin
-signatures such that the channel configuration update transaction fulfills the channel's
-modification policy.
+通道配置更新过程确实非常复杂，但是对于各个步骤存在逻辑方法。最后阶段是形成以protobuf二进制格式表示
+的delta事务对象，然后获取必需数量的管理员签名，以便通道配置更新事务满足通道的修改策略。
 
-The ``configtxlator`` and ``jq`` tools, along with the ever-growing ``peer channel``
-commands, provide us with the functionality to accomplish this task.
+``configtxlator`` 和 ``jq`` 工具, 和一系列的 ``节点通道`` 命令，为我们提供各种功能来完成这个任务。
 
 .. Licensed under Creative Commons Attribution 4.0 International License
    https://creativecommons.org/licenses/by/4.0/
