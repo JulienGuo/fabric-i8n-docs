@@ -114,7 +114,6 @@ PKI的四个关键要素：
 
 Let's quickly describe these PKI basics, and if you want to know more details,
 [Wikipedia](https://en.wikipedia.org/wiki/Public_key_infrastructure) is a good place to start.
-
 让我们快速的了解一下PKI的基础知识，如果你想要了解更多细节，[Wikipedia](https://en.wikipedia.org/wiki/Public_key_infrastructure)可以为你提供帮助。
 
 ## Digital Certificates
@@ -197,6 +196,7 @@ only on the same message.
 In the example above, to authenticate his message Joe uses his private key to produce a
 signature on the message, which he then attaches to the message. The signature
 can be verified by anyone who sees the signed message, using John's public key.
+
 
 在上面的例子中，Joe为了证明消息是自己所发，使用自己的私钥对消息进行签名，并把数字签名附在消息上。任何看到这条消息的人，可以使用Joe的公钥来验证这条消息。
 
