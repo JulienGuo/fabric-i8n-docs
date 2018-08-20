@@ -514,37 +514,31 @@ gossip通讯，因为他们不能验证其他节点从他们自己组织转发�
 
   peer channel join -b mychannel.block
 
-Upgrade and Invoke Chaincode
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+更新和调用链码
+~~~~~~~~~~~~~~~
 
-The final piece of the puzzle is to increment the chaincode version and update
-the endorsement policy to include Org3. Since we know that an upgrade is coming,
-we can forgo the futile exercise of installing version 1 of the chaincode. We
-are solely concerned with the new version where Org3 will be part of the
-endorsement policy, therefore we'll jump directly to version 2 of the chaincode.
+最后一部分是增加链码版本以及更新加入Org3后的背书策略。既然我们马上要更新，那么我们先不去想
+安装链码版本1的无用练习了。我们只关注新的版本，在该版本中Org3将成为背书策略的一员，因此我们
+将直接跳到链码版本2.
 
-From the Org3 CLI:
+从Org3的CLI执行:
 
 .. code:: bash
 
   peer chaincode install -n mycc -v 2.0 -p github.com/chaincode/chaincode_example02/go/
 
-Modify the environment variables accordingly and reissue the command if you want to
-install the chaincode on the second peer of Org3. Note that a second installation is
-not mandated, as you only need to install chaincode on peers that are going to serve as
-endorsers or otherwise interface with the ledger (i.e. query only). Peers will
-still run the validation logic and serve as committers without a running chaincode
-container.
+如果你想安装该链码到Org3的其他节点，请修改相应的环境变量，然后再执行一遍该命令。注意，第二次安装
+不是强制的，因为你只需要安装链码到那些背书节点，或者需要和账本交互（例如：只查询账本）的节点。
+没有运行链码容器是，节点将依旧运行验证逻辑以及扮演提交者角色。
 
-Now jump back to the **original** CLI container and install the new version on the
-Org1 and Org2 peers. We submitted the channel update call with the Org2 admin
-identity, so the container is still acting on behalf of ``peer0.org2``:
+现在跳回到 **原生** CLI容器并安装新版本到Org1和Org2节点。我们以Org2管理员身份提交通道更新调用，
+因此该容器依旧代表 ``peer0.org2``:
 
 .. code:: bash
 
   peer chaincode install -n mycc -v 2.0 -p github.com/chaincode/chaincode_example02/go/
 
-Flip to the ``peer0.org1`` identity:
+切换到 ``peer0.org1`` 身份:
 
 .. code:: bash
 
@@ -556,20 +550,18 @@ Flip to the ``peer0.org1`` identity:
 
   export CORE_PEER_ADDRESS=peer0.org1.example.com:7051
 
-And install again:
+然后再次安装:
 
 .. code:: bash
 
   peer chaincode install -n mycc -v 2.0 -p github.com/chaincode/chaincode_example02/go/
 
-Now we're ready to upgrade the chaincode. There have been no modifications to
-the underlying source code, we are simply adding Org3 to the endorsement policy for
-a chaincode -- ``mycc`` -- on ``mychannel``.
+现在我们准备更新链码了。下面的源码没做任何修改，我们只是简单地为在 ``mychannel`` 的链码
+-- ``mycc`` -- 增加Org3到背书策略中。
 
-.. note:: Any identity satisfying the chaincode's instantiation policy can issue
-          the upgrade call. By default, these identities are the channel Admins.
+.. note:: 任何满足链码的初始化策略的身份都可以执行更新调用。默认情况下，这些身份都是通道管理员。
 
-Send the call:
+发送调用：
 
 .. code:: bash
 
