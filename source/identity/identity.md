@@ -117,6 +117,7 @@ Let's quickly describe these PKI basics, and if you want to know more details,
 让我们快速的了解一下PKI的基础知识，如果你想要了解更多细节，[Wikipedia](https://en.wikipedia.org/wiki/Public_key_infrastructure)可以为你提供帮助。
 
 ## Digital Certificates
+
 ## 数字证书
 A digital certificate is a document which holds a set of attributes relating to a
 party. The most common type of certificate is the one compliant with the [X.509 standard](https://en.wikipedia.org/wiki/X.509),
